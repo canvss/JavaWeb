@@ -4,7 +4,6 @@ package com.canvs.servlets;
 import com.canvs.dao.impl.CustomerDAOImpl;
 import com.canvs.pojo.Customer;
 import com.canvs.utils.JDBCUtils;
-import org.junit.Test;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -26,6 +25,7 @@ public class AddServlet extends HttpServlet {
         String id = req.getParameter("id");
         String name = req.getParameter("name");
         String email = req.getParameter("email");
+        // String[] parameterValues = req.getParameterValues("hobby");
         Customer cust = new Customer(Integer.parseInt(id), name, email, new Date(16737635569L));
         CustomerDAOImpl dao = new CustomerDAOImpl();
         Connection conn = null;
