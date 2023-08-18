@@ -4,7 +4,7 @@ Servlet（Server Applet）是Java Servlet的简称，称为小服务程序或服
 
 #### 工作原理
 
-<img src="imgs/Java-Servlet-Architecture.webp" style="zoom:67%;" />
+<img src="imgs/Java-Servlet-Architecture.webp" style="zoom:40%;" />
 
 - 客户端发起http请求
 - Servlet机制接收用户请求，并且交给后端业务进行处理
@@ -604,7 +604,7 @@ public class LoginServletForword2 extends HttpServlet {
 
 - 请求转发是服务器端代为请求，再将结果返回给客户端的，所以整个请求过程中URL地址是不变的；而请求重定向是服务器端告诉客户端，“你去另一个地方访问”，所以浏览器会重新再发送一次请求，因此客户端最终显示的URL也为最终跳转的地址，而非刚开始请求的地址，所以URL地址发生了改变
 
-<img src="imgs/6869205430bfab1f014027b79420a960b32a2a.png" style="zoom:67%;" />
+<img src="imgs/6869205430bfab1f014027b79420a960b32a2a.png" style="zoom:40%;" />
 
 |                         | 转发                             | 重定向                                                |
 | ----------------------- | -------------------------------- | ----------------------------------------------------- |
