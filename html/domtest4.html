@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload = function (){
+            //写法1:
+            //1.创建tr标签
+            let trEle = document.createElement("tr")
+            trEle.setAttribute("align","center")
+
+            //2.创建td标签
+            let tdEle1 = document.createElement("td")
+            tdEle1.innerText = 200
+            let tdEle2 = document.createElement("td")
+            tdEle2.innerText = "李四"
+            let tdEle3 = document.createElement("td")
+            tdEle3.innerText = 18
+
+            //3.将td追加到tr标签中
+            trEle.append(tdEle1,tdEle2,tdEle3)
+            console.log(trEle)
+
+            //4.将tr标签追加到table中
+            document.getElementById("tab1").append(trEle)
+
+            //写法2:  利用innerHtml的方式简化代码
+            let tr2 = document.createElement("tr")
+            tr2.setAttribute("align","center")
+            //定义的html的字符串
+            let tds = "<td>300</td><td>麻子</td><td>20</td>"
+            // <tr>
+            //   <td>300</td><td>麻子</td><td>20</td>
+            // </tr>
+            tr2.innerHTML = tds
+            document.getElementById("tab1").append(tr2)
+
+        }
+    </script>
+</head>
+<body>
+    <h1>DOM操作</h1>
+    <table id="tab1" border="1px" cellpadding="0" cellspacing="0" width="500px">
+        <tr>
+            <th>编号</th>
+            <th>名称</th>
+            <th>年龄</th>
+        </tr>
+        <tr align="center">
+            <td>100</td>
+            <td>张三</td>
+            <td>18</td>
+        </tr>
+    </table>
+</body>
+</html>

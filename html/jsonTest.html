@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!--mata指定字符集标签-->
+        <meta charset="utf-8">
+        <title>json</title>
+        <script type="text/javascript">
+            //js对象
+            let jsObject = {
+                id:100,
+                name:"canvs",
+                age:20,
+            }
+//            alert(jsObject.name);
+            //json对象格式
+            let jsonObject = {
+                "id":101,
+                "name":"tom",
+                "age":18,
+            }
+            alert(jsonObject.name);
+            //Array写法
+            let array = ["a","b","c","d"];
+//            alert(array[0]);
+        
+            //嵌套格式的写法
+            let object_array = {
+                "id":100,
+                "name":"tomcat",
+                "hobbys":["吃鱼","吃肉","吃猫粮"],
+            }
+            console.log(object_array);
+            
+            //json对象转化为字符串
+            let str = JSON.stringify(object_array);
+            console.log(typeof str);
+            //json串转换为JSON对象
+            let cat = JSON.parse(str);
+            console.log(cat)
+        </script>
+    </head>
+    <body>
+       
+    </body>
+</html>

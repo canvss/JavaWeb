@@ -617,3 +617,69 @@ public class LoginServletForword2 extends HttpServlet {
 | WEB-INF下的资源         | 能访问                           | 不能访问                                              |
 | 目标资源                | 必须是当前web应用中的资源        | 不局限于当前web应用                                   |
 
+#### 请求响应的字符编码设置
+
+##### GET请求（Tomcat7及以下需要处理）
+
+GET请求参数是在地址栏后面，需要修改tomcat的配置文件。需要在server.xml文件修改Connector标签，添加URIEncoding="utf-8"属性
+
+##### POST请求
+
+- post请求提交了中文的请求体，服务器解析出现问题
+- 解决方法：在获取参数值之前，设置请求的解码格式，使其和页面保持一致
+
+```java
+ //设置编码格式
+ req.setCharacterEncoding("utf-8");
+```
+
+##### 解决响应乱码问题
+
+- 向浏览器发送响应的时候，告诉浏览器，使用的字符集类型，浏览器就会按照这种方式来解码
+- 方法1:
+
+```java
+response.setHeader("Content-Type", "text/html;charset=utf-8");
+```
+
+- 方法2:
+
+```java
+response.setContentType("text/html;charset=utf-8");
+```
+
+### Web应用路径设置
+
+#### URL
+
+url是uniform Resource Locater的简写，翻译为统一资源定位符，它是某个互联网资源的唯一访问地址，客户端可以通过url访问到具体的互联网资源
+
+![](imgs/1365a7f61e0f4c3e88bd27112b861d6f.png)
+
+uri是统一资源标志符（Uniform Resource Identifier）表示web上每一种可用的资源只包含图中的path/Servlet不包含服务器地址
+
+#### 绝对路径和相对路径
+
+相对路径：虚拟路径如果不以 / 开始，就是相对路径
+
+绝对路径：虚拟路径如果以 / 开始，就是绝对路径
+
+- 在服务器端：虚拟路径最开是的 / 表示当前web应用的根目录。只要是服务器端解析的绝对路径，都是以web根目录为起始的。
+- 在浏览器端：虚拟路径最开始的 / 表示当前主机地址
+
+### MVC设计思想
+
+![](imgs/Model-View-Controller.webp)
+
+MVC模式代表Model-View-Controller（模型-视图-控制器）模式。这种模式用于应用程序的分层开发
+
+- Model（模型）：模型代表一个存取数据对象或Java POJO。它也可以带有逻辑，在数据变化时更新控制器
+- View（视图）：视图代表模型包含的数据的可视化
+- Controller（控制器）：控制器作用于模型和视图上。它控制数据流向模型对象，并在数据变化时更新视图。使得视图与模型分离开
+
+#### 三层架构
+
+- 表述层：又可以称为控制层，负责处理浏览器请求、返回响应、页面调度
+- 业务逻辑层：负责处理业务逻辑，根据业务逻辑把持久化层从数据库查询出来的数据进行运算、组装，封装好后返回给表述层，也可以根据业务功能的需要调度持久化层把数据保存到数据库、修改数据库中的数据、删除数据库中的数据
+- 持久化层：根据上一层的调用对数据库中的数据执行CRUD操作
+

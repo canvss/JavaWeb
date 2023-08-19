@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!--mata指定字符集标签-->
+        <meta charset="utf-8">
+        <title>DOM</title>
+       <script type="text/javascript">
+            window.onload = function(){
+                //获取p标签中的属性值
+                let p = document.getElementById("p1");
+                console.log(p.id);
+                console.log(p.name);
+                console.log(p.getAttribute("name"));
+                
+                //获取文本信息
+                console.log(p.innerText);
+                
+                //为属性和文本赋值
+                p.id = "p2";
+                p.setAttribute("name","pName2")
+                p.innerText = "你好 世界"
+                console.log(p);
+            }
+       </script>
+    </head>
+    <body>
+        <h1>DOM操作</h1>
+        <p id="p1" name="pName">helloworld</p>
+    </body>
+</html>

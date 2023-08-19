@@ -15,9 +15,9 @@ public class LoginServletRedirect extends HttpServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
         if (username.equals("canvs") && password.equals("123456")){
-           resp.sendRedirect("/servlet/success.html");
+           resp.sendRedirect(req.getContextPath()+"/success.html");
         }else {
-            resp.sendRedirect("/servlet/failed.html");
+            resp.sendRedirect(req.getContextPath()+"/failed.html");
         }
     }
 }

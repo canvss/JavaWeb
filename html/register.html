@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>注册</title>
+    </head>
+    <body>
+        <form action="register" method="post">
+            姓   名:  <input type="text" name="username"/> <br/>
+            密   码:  <input type="password" name="password"/> <br/>
+            性   别：
+            <input type="radio" name="gender" id="man" checked="checked" />
+            <label for="man">男</label>
+            <input type="radio" name="gender" id="woman"/>
+            <label for="man">女</label> <br/>
+            生   日:  <input type="date" name="birth"/> <br/>
+            职   业:
+            <select name="profession">
+                <option value="">请选择</option>
+                <option value="Java开发">Java开发</option>
+                <option value="web开发">web开发</option>
+                <option value="大数据开发">大数据开发</option>
+            </select> <br/>
+            爱   好:
+            <input type="checkbox" name="hobbys" value="打游戏" checked="checked">打游戏 
+            <input type="checkbox" name="hobbys" value="敲代码">敲代码 
+            <input type="checkbox" name="hobbys" value="看电视">看电视 <br/>
+            文   件:
+            <input type="file" name="file"/><br/>
+            个人简介: <textarea name="info" style="width=300px;height=100px;"></textarea> <br/>
+            <input type="hidden" name="id" value="1000"/>
+            <input type="submit" value="注册"/>
+            <input type="reset" value="重填"/>
+        </form>
+    </body>
+</html>

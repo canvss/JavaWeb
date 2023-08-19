@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!--mata指定字符集标签-->
+        <meta charset="utf-8">
+        <title>DOM</title>
+       <script type="text/javascript">
+            window.onload = function(){
+                let p = document.getElementById("p1");
+                //根据id获取元素
+                console.log(p)  //<p id="p1" class="pClass" name="Pname">
+                
+                //根据标签名获取元素
+                let pArray = document.getElementsByTagName("p");   
+                console.log(pArray);
+                
+                //根据name属性获取元素
+                let p2 = document.getElementsByName("pName");
+                console.log(p2);
+                
+                //class属性获取元素
+                let pClass = document.getElementsByClassName("pClass");
+                console.log(pClass);
+            }
+       </script>
+    </head>
+    <body>
+        <h1>DOM操作</h1>
+        <p id="p1" name="pName" class="pClass">hello world 1</p>
+        <p id="p2" name="pName" class="pClass">hello world 2</p>
+    </body>
+</html>

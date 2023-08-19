@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!--mata指定字符集标签-->
+        <meta charset="utf-8">
+        <title>DOM</title>
+       <script type="text/javascript">
+            window.onload  = function(){
+                //获取div1的子元素
+                let childrens = document.getElementById("div1").children;
+                console.log(childrens);
+                
+                let p1 = document.getElementById("div1").firstElementChild;
+                console.log(p1);
+            }
+       </script>
+    </head>
+    <body>
+        <h1>DOM操作</h1>
+        <div id="div1">
+            <p>java</p>
+            <p>python</p>
+            <p>c++</p>
+        </div>
+    </body>
+</html>

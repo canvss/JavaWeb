@@ -1,0 +1,24 @@
+/*元素选择器*/
+p{
+    color:cadetblue;
+    font-size: 35px;
+    font-family: 华文行楷;
+}
+
+/*id选择器*/
+#div1{
+  border: blue 1px dashed;
+  width: 200px;
+  height: 200px;
+  background-color: yellowgreen;
+  float: left;
+}
+
+/*类选择器*/
+.classdiv{
+     border: blue 1px dashed;
+            width: 200px;
+            height: 200px;
+            background-color: yellowgreen;
+            float: left;
+}

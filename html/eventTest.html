@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!--mata指定字符集标签-->
+        <meta charset="utf-8">
+        <title>DOM</title>
+       <script type="text/javascript">
+            function myClick(){
+                alert("我是点击事件！")
+            }
+            function myChange(){
+                alert("数据修改之后，离焦时触发")
+            }
+            function myBlur(){
+                alert("离焦时触发")
+            }
+            function myOnmouseover(){
+                window.location.href="http://www.baidu.com"
+            }
+       </script>
+    </head>
+    <body>
+       <button onclick="myClick()">点击时触发</button>
+    <button ondblclick="myClick()">双击时触发</button><br>
+    用户名:  <input type="text" name="username" onchange="myChange()">
+    密码:  <input type="password" name="password" onblur="myBlur()"><br>
+    <!--鼠标移动上去开始触发-->
+    <img src="https://c-ssl.duitang.com/uploads/item/201909/13/20190913011917_sKLwP.jpeg" width="300px" height="300px" onmouseover="myOnmouseover()">
+
+    </body>
+</html>
