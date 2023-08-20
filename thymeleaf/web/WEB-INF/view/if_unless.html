@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>if和unless</title>
+</head>
+<body>
+    <h1 th:text="${#request.getAttribute('num')}"></h1>
+    <!-- 当判断结果为真时，显示标签体内容   -->
+    <h1 th:if="${num == 10}">num = 10</h1>
+    <h1 th:if="${num > 20}">num > 20</h1>
+    <h1 th:if="${num < 20}">num < 20</h1>
+    <h1 th:unless="${num > 20}"> unless num > 20</h1>
+    <h1 th:if="${not (num > 20)}"> if not num > 20</h1>
+</body>
+</html>

@@ -3,4 +3,66 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+    <servlet>
+        <servlet-name>AddServlet</servlet-name>
+        <servlet-class>com.canvs.servlets.AddServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddServlet</servlet-name>
+        <url-pattern>/add</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>HelloServlet</servlet-name>
+        <servlet-class>com.canvs.servlets.HelloServlet</servlet-class>
+        <init-param>
+            <param-name>url</param-name>
+            <param-value>jdbc:mysql://bj-cynosdbmysql-grp-an5acmhk.sql.tencentcdb.com:28067/demo?serverTimezone=UTC</param-value>
+        </init-param>
+        <init-param>
+            <param-name>driverClass</param-name>
+            <param-value>com.mysql.cj.jdbc.Driver</param-value>
+        </init-param>
+        <init-param>
+            <param-name>user</param-name>
+            <param-value>root</param-value>
+        </init-param>
+        <init-param>
+            <param-name>password</param-name>
+            <param-value>Lbwnb123</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HelloServlet</servlet-name>
+        <url-pattern>/hello</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>HelloServlet2</servlet-name>
+        <url-pattern>/hello2</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>HelloServlet2</servlet-name>
+        <servlet-class>com.canvs.servlets.HelloServlet2</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HelloServlet3</servlet-name>
+        <servlet-class>com.canvs.servlets.HelloServlet3</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HelloServlet3</servlet-name>
+        <url-pattern>/hello3</url-pattern>
+    </servlet-mapping>
+<!--设置WEB应用全局参数-->
+    <context-param>
+        <param-name>name</param-name>
+        <param-value>canvs</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>Hello</servlet-name>
+        <servlet-class>com.canvs.servlets.HelloServler4</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Hello</servlet-name>
+        <url-pattern>/hello4</url-pattern>
+    </servlet-mapping>
 </web-app>

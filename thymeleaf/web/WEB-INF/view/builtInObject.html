@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thymeleaf内置对象</title>
+</head>
+<body>
+  <h1 th:text="${#request.getContextPath()}"></h1>
+  <h1 th:text="${#request.getAttribute('name')}"></h1>
+  <h2 th:text="${#lists.isEmpty(list)}">测试list</h2>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ognl</title>
+</head>
+<body>
+  <!-- 获取user对象数据  -->
+  <p th:text="${user}"></p>
+  <p th:text="${user.id}"></p>
+  <p th:text="${user.name}"></p>
+
+  <!-- 获取list集合 -->
+  <p th:text="${list}"></p>
+  <p th:text="${list[1].name}"></p>
+  <p th:text="${list[1]}"></p>
+
+  <!-- 获取map中数据 -->
+  <p th:text="${map}"></p>
+  <p th:text="${map.user}"></p>
+  <p th:text="${map.user.name}"></p>
+  <!-- 当name是变量时使用 -->
+  <p th:text="${map.user['name']}"></p>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>switch case</title>
+</head>
+<body>
+    <h3>switch分支语法</h3>
+    <div th:switch="${level}">
+      <p th:case="1">一级</p>
+      <p th:case="2">二级</p>
+      <p th:case="3">三级</p>
+    </div>
+</body>
+</html>

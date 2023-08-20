@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>获取参数</title>
+</head>
+<body>
+  <h1 th:text="${param.id}"></h1>
+  <h1 th:text="${param.name}"></h1>
+  <h1 th:text="${param.hobby[0]}"></h1>
+  <h1 th:text="${param.hobby[1]}"></h1>
+  <h1 th:text="${param.hobby[2]}"></h1>
+</body>
+</html>

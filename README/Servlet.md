@@ -326,9 +326,24 @@ public class HelloServlet implements Servlet {
 - 由Servlet容器创建其实现类对象并传入service(HttpServletRequest req, HttpServletResponse res)方法中
 - HttpServletRequest对象指的是容器提供的HttpServletRequest实现类对象
 
+![](imgs/1206721501-5d66187a81ae2_fix732.webp)
+
 #### 获取请求参数
 
-- 请求参数就是浏览器向服务器提交的数据
+- 请求参数就是浏览器向服务器提交的数据 getParameter
+  - req.getParameter("key")
+  - 该方法获取的都是String数据类型，如果需要其他类型，则手动转换
+  - 该方法每次只能获取一个参数信息
+
+- 获取同名提交的数据
+  - req.getParametValues("hobby")
+  - 通过数组的形式保存数据
+  - 一般同名提交时使用该方法
+
+- getParameterMap
+  - 通过一个方法获取所有的请求数据Map<String,String[]>
+  - 该方法一般配合框架使用，通过该方法接收参数，利用框架内部的API动态的转化为封装的对象
+
 - 附在url后面(和get请求一致，拼接的形式请求数据绑定)
 - 通过表单提交
 
@@ -427,6 +442,9 @@ public class HelloServlet8 extends HttpServlet {
 - 该接口时ServletResponse接口的子接口，封装了服务器针对于HTTP响应的相关信息
 - 由Servlet容器创建其实现类对象，并传入service(HttpServletRequest req,HttpServletResponse res)方法中
 - HttpServletResponse对象指的是容器提供的HttpServletResponse实现类对象
+- 服务器响应给客户端数据
+  - resp.getWriter().write("helloworld")
+
 
 #### 使用PrintWriter对象向浏览器输出数据
 
@@ -435,6 +453,7 @@ public class HelloServlet8 extends HttpServlet {
 public class HelloServlet9 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+      	resp.setContentType("text/html;charset=utf-8");
         PrintWriter pw = resp.getWriter();
         pw.println("Servlet response!");
         pw.println("Hello World!");
@@ -451,7 +470,8 @@ public class HelloServlet9 extends HttpServlet {
 - 响应头就是浏览器解析页面的配置。如：告诉浏览器使用哪种编码和文件格式解析响应体内容
 
 ```java
- resp.setHeader("Conten-Type","text/html;charset=UTF-8");
+resp.setHeader("Conten-Type","text/html;charset=UTF-8");
+resp.setContentType("text/html;charset=utf-8");
 ```
 
 #### 重定向请求
@@ -538,7 +558,10 @@ public class LoginServletRedirect extends HttpServlet {
 - 第一个Servlet接收到浏览器端的请求，进行了一定的处理，然后没有立即对请求进行响应，而是将请求交给下一个Servlet继续处理，下一个Servlet处理完成之后对浏览器进行了响应。在服务器内部将请求交给其他组件继续处理就是请求的转发。
 - HttpServletRequest代表HTTP请求，对象由Servlet容器创建。转发的请求下，两个Servlet可以共享同一个Request对象中保存的数据
 - 转发的情况下，可以访问WEB-INF下的资源
-- 转发以/开始表示项目根路径，重定向以/开始表示主机地址
+  - 如果页面保存到web目录下，则通过浏览器可以直接访问，如果用户直接通过浏览器访问业务页面则不安全，所以业务页面不能直接放到web目录下
+  - web项目准备了一个目录WEB-INF，该目录是受保护的，用户不能通过浏览器直接访问，只能通过服务器内部跳转(转发)访问
+
+- 转发以 / 开始表示项目根路径，重定向以/开始表示主机地址
 - 功能：
   - 获取请求参数
   - 获取请求路径即URL地址相关信息
@@ -635,7 +658,9 @@ GET请求参数是在地址栏后面，需要修改tomcat的配置文件。需�
 
 ##### 解决响应乱码问题
 
-- 向浏览器发送响应的时候，告诉浏览器，使用的字符集类型，浏览器就会按照这种方式来解码
+- 响应乱码问题时服务器数据交给客户端，之后客户端获取数据在页面中进行展示的。
+- 易错分析：resp.setCharacterEncoding("utf-8")：只能保证从resp对象中获取数据不乱码
+
 - 方法1:
 
 ```java
@@ -683,3 +708,16 @@ MVC模式代表Model-View-Controller（模型-视图-控制器）模式。这种
 - 业务逻辑层：负责处理业务逻辑，根据业务逻辑把持久化层从数据库查询出来的数据进行运算、组装，封装好后返回给表述层，也可以根据业务功能的需要调度持久化层把数据保存到数据库、修改数据库中的数据、删除数据库中的数据
 - 持久化层：根据上一层的调用对数据库中的数据执行CRUD操作
 
+### 加密算法
+
+- MD5介绍：MD5信息摘要算法（MD5 Message-Digest Algorithm）一种被广泛使用的密码散列函数，生成128位（16字节）的散列值
+- 特点：
+  - 可由明文加密为密文，不能反向解密
+  - 通过函数计算无解所以不能反向解密
+- 常识
+  - Java中常见的hash码 8位16进制 0-9 A-F
+  - 问8位16进制数有多少种排列组合？ 0000000-FFFFFFFF    = (2^4) ^ 8  2^32
+  - 如果密码相同, 采用相同的hash算法 问 结果是否相同?    相同
+  - 如果密码不同,采用相同的hash算法  问题 结果是否相同?   可能相同!
+  - hash碰撞问题:  不同的数据经过相同的算法可能出现相同的结果.
+  - hash碰撞问题: 能否避免   不可以的  只能降低其概率     增大hash的长度.
