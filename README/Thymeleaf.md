@@ -664,7 +664,7 @@ public class EachServlet extends ViewBaseServlet{
 </head>
 <body>
   <h3>each循环结构</h3>
-  <div  th:each="user,status:${list}">
+  <div th:each="user,status:${list}">
     序号：<span th:text="${status.count}"></span>
     索引：<span th:text="${status.index}"></span>
     id：<span th:text="${user.id}"></span>
@@ -673,6 +673,52 @@ public class EachServlet extends ViewBaseServlet{
 </body>
 </html>
 ```
+
+```java
+@WebServlet("/index")
+public class IndexServlet extends ViewBaseServlet {
+    private CustomerDAOImpl dao = new CustomerDAOImpl();
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doPost(req,resp);
+    }
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Customer> customerList = dao.getCustomerList();
+        customerList.forEach(System.out::print);
+        request.setAttribute("customerList",customerList);
+        this.processTemplate("index",request,response);
+    }
+}
+```
+
+```html
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>员工列表</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>姓名</th>
+        <th>邮箱</th>
+        <th>生日</th>
+    </tr>
+    <tr th:each="cust:${customerList}">
+        <td th:text="${cust.getId()}"></td>
+        <td th:text="${cust.getName()}"></td>
+        <td th:text="${cust.getEmail()}"></td>
+        <td th:text="${cust.getBirth()}"></td>
+    </tr>
+</table>
+</body>
+</html>
+```
+
+
 
 ### Thymeleaf包含其他模版文件
 
