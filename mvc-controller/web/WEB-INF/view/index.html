@@ -55,15 +55,15 @@
         </table>
         <br>
         <div align="center" style="padding-top: 4px;">
-            <span style="float: left; padding-left: 100px" th:text="${'第 '+session.pageNo+' 页 - 共 '+session.tailPageNo+' 页'}">共0页 - 共0条记录</span>
+            <span style="float: left; padding-left: 100px" th:text="'第 ' + (${session.pageNo + 1}) + ' 页 - 共 ' + ${session.tailPageNo} + ' 页'">共0页 - 共0条记录</span>
             <span style="float: right; padding-right: 30px">
             <input type="button" class="btn" th:onclick="|page(0)|" th:disabled="${session.pageNo==0}" value="首 页"> &ensp;
             <input type="button" class="btn" th:onclick="|page(${session.pageNo}-1)|"
                    th:disabled="${session.pageNo==0}" value="上一页">&ensp;&ensp;  &ensp;
             <input type="button" class="btn" th:onclick="|page(${session.pageNo}+1)|"
-                   th:disabled="${session.pageNo==session.tailPageNo}" value="下一页">&ensp;&ensp;  &ensp;
-            <input type="button" class="btn" th:onclick="|page(${session.tailPageNo})|"
-                   th:disabled="${session.pageNo==session.tailPageNo}" value="尾 页">
+                   th:disabled="${session.pageNo==(session.tailPageNo)-1}" value="下一页">&ensp;&ensp;  &ensp;
+            <input type="button" class="btn" th:onclick="|page(${(session.tailPageNo)-1})|"
+                   th:disabled="${session.pageNo==(session.tailPageNo)-1}" value="尾 页">
             </span>
         </div>
     </div>
