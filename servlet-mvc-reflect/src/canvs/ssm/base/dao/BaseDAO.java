@@ -1,6 +1,7 @@
-package canvs.dao.base;
+package canvs.ssm.base.dao;
 
-import com.canvs.utils.JDBCUtils;
+
+import canvs.ssm.utils.JDBCUtils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;

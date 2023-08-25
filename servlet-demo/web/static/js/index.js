@@ -7,3 +7,7 @@ function delCust(id) {
 function editCust(id) {
     window.location.href = 'edit?id=' + id;
 }
+
+function page(pageNo) {
+    window.location.href = "index?pageNo=" + pageNo;
+}

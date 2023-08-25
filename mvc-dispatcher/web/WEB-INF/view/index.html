@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>员工列表</title>
@@ -10,7 +10,7 @@
 <div id="div_index">
     <div>
         <p align="center" id="p1">员工信息表</p>
-        <a th:href="@{/add}" style="float: right">添加新员工记录</a>
+        <a th:href="@{/demo?method=addCustomer}" style="float: right">添加新员工记录</a>
     </div>
     <div id="div_cust_list" style="padding-top: 5px">
         <table id="index_table" border="1px" align="center">

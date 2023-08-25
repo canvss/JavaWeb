@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>添加用户</title>
+    <link rel="stylesheet" href="/static/css/add.css">
+</head>
+<body>
+<div align="center">
+    <p style="font-size: 20px">添加用户信息</p>
+    <form th:action="@{/demo?method=addCustomer}" method="post">
+        姓名: <input type="text" class="add_input" name="name"/> <br/> <br/>
+        邮箱: <input type="text" class="add_input" name="email"/><br/> <br/>
+        生日: <input type="date" class="add_input" name="birth"/><br/> <br/>
+        工资: <input type="text" class="add_input" name="salary"/><br/> <br/>
+        <input type="submit" value="提交"> &ensp;
+        <input type="reset" value="重填">
+    </form>
+</div>
+</body>
+</html>

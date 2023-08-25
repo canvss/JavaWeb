@@ -1,12 +1,12 @@
-package canvs.dao;
+package canvs.customer.dao;
 
 
-import canvs.pojo.Customer;
+import canvs.customer.pojo.Customer;
 
 import java.util.List;
 
 public interface CustomerDAO {
-    void insertCustomer(Customer cust);
+    int insertCustomer(Customer cust);
     List<Customer> getCustomerList(int pageNumber,int pageCount);
     Customer getCustomerById(Integer id);
     void updateCustomerById(Customer cust);
