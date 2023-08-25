@@ -9,7 +9,7 @@ public class Utils {
     public static Date dateFormat(String date) throws ParseException {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         java.util.Date parse = simpleDateFormat.parse(date);
-        return new java.sql.Date(parse.getTime());
+        return new Date(parse.getTime());
     }
 
     public static boolean isEmpty(String str) {

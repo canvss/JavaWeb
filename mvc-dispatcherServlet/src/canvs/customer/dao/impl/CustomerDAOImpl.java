@@ -1,9 +1,8 @@
 package canvs.customer.dao.impl;
 
 import canvs.customer.dao.CustomerDAO;
-
-import canvs.ssm.base.dao.BaseDAO;
 import canvs.customer.pojo.Customer;
+import canvs.ssm.base.dao.BaseDAO;
 import canvs.ssm.utils.JDBCUtils;
 
 import java.sql.Connection;
