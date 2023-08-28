@@ -1,0 +1,18 @@
+a {
+    text-decoration: none;
+}
+#index_table{
+    /*去掉表格内框*/
+    border-collapse: collapse;
+    width: 100%;
+}
+#p1{
+    font-size: 20px;
+}
+#div_index{
+    margin: 0px 25% 0px 25%;
+}
+.btn{
+    width: 60px;
+    height: 30px;
+}
