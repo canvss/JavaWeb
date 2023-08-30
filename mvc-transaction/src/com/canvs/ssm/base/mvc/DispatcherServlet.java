@@ -4,6 +4,7 @@ import com.canvs.ssm.ioc.BeanFactory;
 import com.canvs.ssm.ioc.ClassPathXmlApplicationContext;
 import com.canvs.ssm.utils.Utils;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,10 +15,21 @@ import java.lang.reflect.Parameter;
 
 @WebServlet("*.do")
 public class DispatcherServlet extends ViewBaseServlet {
-    private BeanFactory beanFactory = new ClassPathXmlApplicationContext();
+    private BeanFactory beanFactory;
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        ServletContext servletContext = getServletContext();
+        Object beanFactoryObj = servletContext.getAttribute("beanFactory");
+        if (beanFactoryObj == null){
+            throw new RuntimeException("IOC容器获取失败");
+        }
+        beanFactory = (BeanFactory) beanFactoryObj;
+    }
+
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("utf-8");
         String servletPath = request.getServletPath();
         servletPath = servletPath.split("/")[1].split(".do")[0];
         String methodName = request.getParameter("method");
@@ -67,6 +79,7 @@ public class DispatcherServlet extends ViewBaseServlet {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            throw new RuntimeException("DispatcherServlet出错");
         }
     }
 }

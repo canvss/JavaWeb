@@ -1,4 +1,4 @@
-package com.canvs.ssm.io;
+package com.canvs.ssm.ioc;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

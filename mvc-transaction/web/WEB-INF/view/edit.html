@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑用户信息</title>
+    <link rel="stylesheet" href="/static/css/add.css">
+</head>
+<body>
+<div align="center">
+    <p style="font-size: 20px">用户信息</p>
+    <form th:action="@{/customer.do?method=editCustomerById}" method="post">
+        <input hidden="hidden" class="add_input" name="id" th:value="${cust.getId()}"> <br/> <br/>
+        姓名: <input name="name" class="add_input" type="text" th:value="${cust.getName()}"/><br/> <br/>
+        邮箱: <input name="email" class="add_input" type="text" th:value="${cust.getEmail()}"/><br/> <br/>
+        生日: <input name="birth" class="add_input" type="date" th:value="${cust.getBirth()}"/><br/> <br/>
+        工资: <input name="salary" class="add_input" type="text" th:value="${cust.getSalary()}"/><br/> <br/>
+        <input type="submit" value="提交">
+    </form>
+</div>
+</body>
+</html>
