@@ -4,8 +4,10 @@ package com.canvs.ssm.filters;
 import com.canvs.ssm.utils.Utils;
 
 import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 
+@WebFilter("*.do")
 public class CharacterEncodingFilter implements Filter {
     private String encoding = "UTF-8";
     @Override
