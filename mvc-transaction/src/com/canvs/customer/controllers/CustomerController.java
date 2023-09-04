@@ -1,5 +1,6 @@
 package com.canvs.customer.controllers;
 
+import com.canvs.customer.exception.CustomerServletException;
 import com.canvs.customer.exception.DateException;
 import com.canvs.customer.pojo.Customer;
 import com.canvs.customer.service.CustomerService;
@@ -7,11 +8,9 @@ import com.canvs.ssm.base.mvc.ViewBaseServlet;
 import com.canvs.ssm.utils.Utils;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-import java.text.ParseException;
 import java.util.List;
 
-public class CustomerServlet extends ViewBaseServlet {
+public class CustomerController extends ViewBaseServlet {
     private CustomerService customerService = null;
 
     protected String customerList(Integer pageNo, HttpServletRequest request) {
@@ -44,8 +43,8 @@ public class CustomerServlet extends ViewBaseServlet {
                     System.out.println(cust + "  --> 添加失败");
                 }
                 return "redirect:customer.do";
-            } catch (ParseException e) {
-                throw new DateException("时间格式错误");
+            } catch (Exception e) {
+                throw new CustomerServletException("时间格式错误");
             }
         } else {
             return "add";
@@ -64,8 +63,8 @@ public class CustomerServlet extends ViewBaseServlet {
                 Customer cust = new Customer(id, name, email, date, Double.parseDouble(salary));
                 customerService.updateCustomerById(cust);
                 return "redirect:customer.do";
-            } catch (ParseException e) {
-                throw new RuntimeException("时间格式有误....");
+            } catch (Exception e) {
+                throw new CustomerServletException("时间格式有误....");
             }
         } else {
             Customer cust = customerService.getCustomerById(id);

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<beans>
-    <!DOCTYPE beans [
+<!DOCTYPE beans [
         <!ELEMENT beans (bean*)>
         <!ELEMENT bean (property*)>
         <!ELEMENT property (#PCDATA)>
@@ -10,13 +9,14 @@
         <!ATTLIST property name CDATA #IMPLIED>
         <!ATTLIST property ref IDREF #IMPLIED>
         ]>
-
+<beans>
+    <bean id="page" class="com.canvs.ssm.base.mvc.PageController"/>
     <bean id="customerDAO" class="com.canvs.customer.dao.impl.CustomerDAOImpl"/>
     <bean id="customerService" class="com.canvs.customer.service.impl.CustomerServiceImpl">
         <!--  property标签用来表示属性，name表示属性名，ref表示引用其他bean的id值 -->
         <property name="customerDAO" ref="customerDAO"/>
     </bean>
-    <bean id="customer" class="com.canvs.customer.controllers.CustomerServlet">
+    <bean id="customer" class="com.canvs.customer.controllers.CustomerController">
         <property name="customerService" ref="customerService"/>
     </bean>
 </beans>

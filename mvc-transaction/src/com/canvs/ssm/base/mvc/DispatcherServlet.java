@@ -31,8 +31,8 @@ public class DispatcherServlet extends ViewBaseServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String servletPath = request.getServletPath();
-        servletPath = servletPath.split("/")[1].split(".do")[0];
         String methodName = request.getParameter("method");
+        servletPath = servletPath.split("/")[1].split(".do")[0];
         Object controllerBeanObj = beanFactory.BeanClass(servletPath);
         if (Utils.isEmpty(methodName)) {
             methodName = "customerList";

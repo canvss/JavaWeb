@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <beans>
-    <bean id="customer" class="com.canvs.customer.controllers.CustomerServlet" />
+    <bean id="customer" class="com.canvs.customer.controllers.CustomerController" />
 </beans>
