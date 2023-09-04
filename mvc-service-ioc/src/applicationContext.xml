@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <beans>
+    <!DOCTYPE beans [
+        <!ELEMENT beans (bean*)>
+        <!ELEMENT bean (property*)>
+        <!ELEMENT property (#PCDATA)>
+
+        <!ATTLIST bean id ID #REQUIRED>
+        <!ATTLIST bean class CDATA #IMPLIED>
+        <!ATTLIST property name CDATA #IMPLIED>
+        <!ATTLIST property ref IDREF #IMPLIED>
+        ]>
     <bean id="customerDAO" class="com.canvs.customer.dao.impl.CustomerDAOImpl"/>
     <bean id="customerService" class="com.canvs.customer.service.impl.CustomerServiceImpl">
         <!--  property标签用来表示属性，name表示属性名，ref表示引用其他bean的id值 -->

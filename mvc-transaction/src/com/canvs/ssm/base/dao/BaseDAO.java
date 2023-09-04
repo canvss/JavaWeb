@@ -1,7 +1,7 @@
 package com.canvs.ssm.base.dao;
 
 
-import com.canvs.customer.exception.BaseDAOException;
+import com.canvs.ssm.exception.BaseDAOException;
 import com.canvs.ssm.utils.JDBCUtils;
 
 import java.lang.reflect.Field;
@@ -13,6 +13,7 @@ import java.util.List;
 
 public class BaseDAO<T> {
     private Class<T> clazz = null;
+    private Connection conn;
 
     {
         Type superclass = this.getClass().getGenericSuperclass();
@@ -21,7 +22,15 @@ public class BaseDAO<T> {
         clazz = (Class<T>) arguments[0];
     }
 
-    public int update(Connection conn, String sql, Object... args) {
+    {
+        try {
+            conn = JDBCUtils.getConnection();
+        } catch (Exception e) {
+            throw new RuntimeException("数据库连接创建失败");
+        }
+    }
+
+    public int update(String sql, Object... args) {
         PreparedStatement ps = null;
         try {
             ps = conn.prepareStatement(sql);
@@ -39,7 +48,7 @@ public class BaseDAO<T> {
     }
 
     // 通用的查询操作，用于返回数据表中的一条记录
-    public T getBean(Connection conn, String sql, Object... args) {
+    public T getBean(String sql, Object... args) {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
@@ -77,7 +86,7 @@ public class BaseDAO<T> {
     }
 
     //通用的查询操作，用于返回数据表中的多条记录构成的集合
-    public List<T> getBeanList(Connection conn, String sql, Object... args) {
+    public List<T> getBeanList(String sql, Object... args) {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
@@ -116,7 +125,7 @@ public class BaseDAO<T> {
     }
 
     //用于查询特殊值的通用的方法
-    public <E> E getValue(Connection conn, String sql, Object... args) {
+    public <E> E getValue(String sql, Object... args) {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
