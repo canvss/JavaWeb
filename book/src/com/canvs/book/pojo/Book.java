@@ -4,10 +4,15 @@ public class Book {
     private Integer id;
     private String bookImg;
     private String bookName;
-    private double price;
+    private Double price;
     private String author;
     private Integer saleCount;
     private Integer bookCount;
+    private Integer bookStatus;
+
+    public Integer getBookStatus() {
+        return bookStatus;
+    }
 
     public Book() {}
 
@@ -39,12 +44,16 @@ public class Book {
         this.bookName = bookName;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public void setBookStatus(Integer bookStatus) {
+        this.bookStatus = bookStatus;
     }
 
     public String getAuthor() {
@@ -69,5 +78,18 @@ public class Book {
 
     public void setBookCount(Integer bookCount) {
         this.bookCount = bookCount;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", bookImg='" + bookImg + '\'' +
+                ", bookName='" + bookName + '\'' +
+                ", price=" + price +
+                ", author='" + author + '\'' +
+                ", saleCount=" + saleCount +
+                ", bookCount=" + bookCount +
+                '}';
     }
 }

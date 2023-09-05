@@ -33,6 +33,10 @@ public class DispatcherServlet extends ViewBaseServlet {
         servletPath = servletPath.split("/")[1].split(".do")[0];
         String operate = request.getParameter("operate");
         Object controllerBeanObj = beanFactory.BeanClass(servletPath);
+        if (controllerBeanObj == null){
+            super.processTemplate("404",request,response);
+            return;
+        }
         if (Utils.isEmpty(operate)) {
             operate = "index";
         }

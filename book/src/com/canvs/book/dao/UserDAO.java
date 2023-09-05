@@ -4,4 +4,5 @@ import com.canvs.book.pojo.User;
 
 public interface UserDAO {
     User getUser(String uname, String pwd);
+    User addUser(User user);
 }

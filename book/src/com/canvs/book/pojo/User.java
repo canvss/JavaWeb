@@ -6,8 +6,23 @@ public class User {
     private String pwd;
     private String email;
     private Integer role;
+    private Cart cart;
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
 
     public User() {
+    }
+
+    public User(String uname, String pwd, String email) {
+        this.uname = uname;
+        this.pwd = pwd;
+        this.email = email;
     }
 
     public User(Integer id) {
@@ -52,5 +67,16 @@ public class User {
 
     public void setRole(Integer role) {
         this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", uname='" + uname + '\'' +
+                ", pwd='" + pwd + '\'' +
+                ", email='" + email + '\'' +
+                ", role=" + role +
+                '}';
     }
 }

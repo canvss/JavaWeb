@@ -10,18 +10,33 @@
         <!ATTLIST property ref IDREF #IMPLIED>
         ]>
 <beans>
-    <bean id="customerDAO" class="com.canvs.customer.dao.impl.CustomerDAOImpl"/>
-    <bean id="customerService" class="com.canvs.customer.service.impl.CustomerServiceImpl">
-        <!--  property标签用来表示属性，name表示属性名，ref表示引用其他bean的id值 -->
-        <property name="customerDAO" ref="customerDAO"/>
-    </bean>
-    <bean id="customer" class="com.canvs.customer.controllers.CustomerController">
-        <property name="customerService" ref="customerService"/>
-    </bean>
     <!--  controller  -->
     <bean id="page" class="com.canvs.ssm.base.mvc.PageController"/>
+    <bean id="user" class="com.canvs.book.controller.UserController">
+       <property name="userService" ref="userService"/>
+        <property name="cartItemService" ref="cartItemService"/>
+    </bean>
+    <bean id="book" class="com.canvs.book.controller.BookController">
+        <property name="bookService" ref="bookService"/>
+    </bean>
+    <bean id="cart" class="com.canvs.book.controller.CartController">
+        <property name="cartItemService" ref="cartItemService"/>
+    </bean>
+
+    <!--  service -->
+    <bean id="bookService" class="com.canvs.book.service.impl.BookServiceImpl">
+        <property name="bookDAO" ref="bookDAO"/>
+    </bean>
+    <bean id="cartItemService" class="com.canvs.book.service.impl.CartItemServiceImpl">
+        <property name="cartItemDAO" ref="cartItemDAO"/>
+        <property name="bookService" ref="bookService"/>
+    </bean>
+    <bean id="userService" class="com.canvs.book.service.impl.UserServiceImpl">
+        <property name="userDAO" ref="userDAO"/>
+    </bean>
 
     <!--  dao  -->
-    <bean id="UserDAO" class="com.canvs.book.dao.impl.UserDAOImpl"/>
-    <!--  service -->
+    <bean id="userDAO" class="com.canvs.book.dao.impl.UserDAOImpl"/>
+    <bean id="bookDAO" class="com.canvs.book.dao.impl.BookDAOImpl"/>
+    <bean id="cartItemDAO" class="com.canvs.book.dao.impl.CartItemDAOImpl"/>
 </beans>

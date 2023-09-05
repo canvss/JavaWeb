@@ -1,5 +1,7 @@
 package com.canvs.ssm.utils;
 
+import org.junit.Test;
+
 import java.io.InputStream;
 import java.sql.*;
 import java.util.Properties;
@@ -25,7 +27,6 @@ public class JDBCUtils {
         }
         return connection;
     }
-
     public static void closeConnection() throws SQLException {
         Connection connection = threadLocal.get();
         if (connection.isClosed()){

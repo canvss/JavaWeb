@@ -1,10 +1,26 @@
 package com.canvs.book.pojo;
 
+import java.math.BigDecimal;
+
 public class CartItem {
     private Integer id;
     private Book book;
     private Integer buyCount;
-    private User user;
+    private User userBean;
+    private Double subtotal;
+
+    public Double getSubtotal() {
+        BigDecimal bigDecimalPrice = new BigDecimal("" + getBook().getPrice());
+        BigDecimal bigDecimalBuyCount = new BigDecimal("" + buyCount);
+        BigDecimal subtotal = bigDecimalPrice.multiply(bigDecimalBuyCount);
+        return subtotal.doubleValue();
+    }
+
+    public CartItem(Book book, Integer buyCount, User userBean) {
+        this.book = book;
+        this.buyCount = buyCount;
+        this.userBean = userBean;
+    }
 
     public CartItem() {
     }
@@ -37,11 +53,21 @@ public class CartItem {
         this.buyCount = buyCount;
     }
 
-    public User getUser() {
-        return user;
+    public User getUserBean() {
+        return userBean;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserBean(User userBean) {
+        this.userBean = userBean;
+    }
+
+    @Override
+    public String toString() {
+        return "CartItem{" +
+                "id=" + id +
+                ", book=" + book +
+                ", buyCount=" + buyCount +
+                ", user=" + userBean +
+                '}';
     }
 }

@@ -3,7 +3,10 @@ package com.canvs.ssm.base.dao;
 
 import com.canvs.ssm.exception.BaseDAOException;
 import com.canvs.ssm.utils.JDBCUtils;
+import com.canvs.ssm.utils.PackageScanner;
 
+import java.io.IOException;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -12,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BaseDAO<T> {
+    static String packageName;
     private Class<T> clazz = null;
     private Connection conn;
 
@@ -30,7 +34,7 @@ public class BaseDAO<T> {
         }
     }
 
-    public int update(String sql, Object... args) {
+    public int executeUpdate(String sql, Object... args) {
         PreparedStatement ps = null;
         try {
             ps = conn.prepareStatement(sql);
@@ -44,6 +48,15 @@ public class BaseDAO<T> {
             throw new BaseDAOException("BaseDAO出错");
         } finally {
             JDBCUtils.closeResource(null, ps);
+        }
+    }
+
+    private static boolean isPojoType(String typeName) {
+        try {
+            List<String> packageNameList = PackageScanner.getAllClassesInPackage(packageName);
+            return packageNameList.contains(typeName);
+        } catch (IOException e) {
+            throw new BaseDAOException("packageName出错....");
         }
     }
 
@@ -63,7 +76,7 @@ public class BaseDAO<T> {
             int columnCount = rsmd.getColumnCount();
             if (rs.next()) {
                 T t = clazz.newInstance();
-                //处理结果姐一行数据中的每一个列
+                //处理结果集一行数据中的每一个列
                 for (int i = 0; i < columnCount; i++) {
                     //获取列值
                     Object columnValue = rs.getObject(i + 1);
@@ -71,6 +84,12 @@ public class BaseDAO<T> {
                     String columnLabel = rsmd.getColumnLabel(i + 1);
                     //通过反射给t对象指定的columnName熟悉赋值为columValue
                     Field field = clazz.getDeclaredField(columnLabel);
+                    String typeName = field.getType().getName();
+                    if (isPojoType(typeName)) {
+                        Class<?> typeNameClass = Class.forName(typeName);
+                        Constructor<?> constructor = typeNameClass.getDeclaredConstructor(java.lang.Integer.class);
+                        columnValue = constructor.newInstance(columnValue);
+                    }
                     field.setAccessible(true);
                     field.set(t, columnValue);
                 }
@@ -110,6 +129,12 @@ public class BaseDAO<T> {
                     String columnLabel = rsmd.getColumnLabel(i + 1);
                     //通过反射给t对象指定的columnName熟悉赋值为columValue
                     Field field = clazz.getDeclaredField(columnLabel);
+                    String typeName = field.getType().getName();
+                    if (isPojoType(typeName)) {
+                        Class<?> typeNameClass = Class.forName(typeName);
+                        Constructor<?> constructor = typeNameClass.getDeclaredConstructor(java.lang.Integer.class);
+                        columnValue = constructor.newInstance(columnValue);
+                    }
                     field.setAccessible(true);
                     field.set(t, columnValue);
                 }

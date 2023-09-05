@@ -10,4 +10,11 @@ public class UserDAOImpl extends BaseDAO<User> implements UserDAO {
         String sql = "SELECT * FROM t_user WHERE uname=? AND pwd=?";
         return super.getBean(sql,uname,pwd);
     }
+
+    @Override
+    public User addUser(User user) {
+        String sql = "INSERT INTO t_user(0,?,?,?,0)";
+        int id = super.executeUpdate(sql, user.getUname(), user.getPwd(), user.getEmail());
+        return new User(id);
+    }
 }
