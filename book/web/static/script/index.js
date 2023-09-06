@@ -1,3 +1,3 @@
 function addCart(bookId){
-    window.location.href="cart.do?operate=addCart&bookId="+bookId;
+    window.location.href="cart?operate=addCart&bookId="+bookId;
 }

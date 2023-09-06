@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 
-@WebServlet("*.do")
+@WebServlet("/")
 public class DispatcherServlet extends ViewBaseServlet {
     private BeanFactory beanFactory;
 
@@ -29,8 +29,18 @@ public class DispatcherServlet extends ViewBaseServlet {
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String requestURI = request.getRequestURI();
+        // 检查请求是否是静态资源，例如以.css、.js、.jpg、.png等结尾
+        if (requestURI.endsWith(".css") || requestURI.endsWith(".js") || requestURI.endsWith(".jpg") || requestURI.endsWith(".png")) {
+            super.service(request, response); // 调用父类的service方法来处理静态资源
+            return;
+        }
         String servletPath = request.getServletPath();
-        servletPath = servletPath.split("/")[1].split(".do")[0];
+        if (servletPath.equals("/")){
+            super.processTemplate("index",request,response);
+            return;
+        }
+        servletPath = servletPath.split("/")[1];
         String operate = request.getParameter("operate");
         Object controllerBeanObj = beanFactory.BeanClass(servletPath);
         if (controllerBeanObj == null){

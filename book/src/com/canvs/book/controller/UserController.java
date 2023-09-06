@@ -16,7 +16,7 @@ public class UserController {
             Cart cart = cartItemService.getCart(user);
             user.setCart(cart);
             session.setAttribute("currUser",user);
-            return "redirect:book.do";
+            return "redirect:book";
         }
         return "index";
     }

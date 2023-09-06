@@ -10,6 +10,10 @@ public class Cart {
     private Integer totalCount; //购物车中的购物项的数量
     private Integer totalBookCount; //购物车中书本的总数量，不是购物车项的总数量
 
+    public void setTotalCount(Integer totalCount) {
+        this.totalCount = totalCount;
+    }
+
     public Cart() {
     }
 

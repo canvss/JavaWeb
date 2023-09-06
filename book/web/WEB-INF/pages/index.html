@@ -21,21 +21,21 @@
                 <i class="iconfont icon-ai-arrow-down"></i>
             </div>
             <div class="topbar-right" th:if="${session.currUser==null}">
-                <a th:href="@{/page.do(operate='page',page='user/login')}" class="login">登录</a>-->
-                <a th:href="@{/page.do(operate='page',page='user/regist')}" class="register">注册</a>-->
+                <a th:href="@{/page(operate='page',page='user/login')}" class="login">登录</a>-->
+                <a th:href="@{/page(operate='page',page='user/regist')}" class="register">注册</a>-->
 <!--                <a th:href="@{/cart.do?operate=getCart}" class="cart iconfont icon-gouwuche">购物车1-->
-                <a th:href="@{/page.do(operate='page',page='user/login')}" class="cart iconfont icon-gouwuche">购物车
+                <a th:href="@{/page(operate='page',page='user/login')}" class="cart iconfont icon-gouwuche">购物车
 <!--                    <div class="cart-num"></div>-->
                 </a>
-                <a th:href="@{/manager.do}" class="admin">后台管理</a>
+                <a th:href="@{/manager}" class="admin">后台管理</a>
             </div>
             <div class="topbar-right" th:unless="${session.currUser==null}">
                 <!--登录后风格-->
                 <span>欢迎你<b th:text="${session.currUser.getUname()}">张总</b></span>
                 <a href="#" class="register">注销</a>
-                <a th:href="@{/cart.do}" class="cart iconfont icon-gouwuche">购物车<div class="cart-num" th:text="${session.currUser.cart.getTotalCount()}">3</div>
+                <a th:href="@{/cart}" class="cart iconfont icon-gouwuche">购物车<div class="cart-num" th:text="${session.currUser.cart.getTotalCount()}">3</div>
                 </a>
-                <a th:href="@{/manager.do}" class="admin">后台管理</a>
+                <a th:href="@{/manager}" class="admin">后台管理</a>
             </div>
         </div>
     </div>

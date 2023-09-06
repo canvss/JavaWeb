@@ -36,18 +36,26 @@ public class BaseDAO<T> {
 
     public int executeUpdate(String sql, Object... args) {
         PreparedStatement ps = null;
+        ResultSet generatedKeys = null;
         try {
-            ps = conn.prepareStatement(sql);
+            ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             for (int i = 0; i < args.length; i++) {
                 ps.setObject(i + 1, args[i]);
             }
             int len = ps.executeUpdate();
+            if (len > 0){
+                generatedKeys = ps.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    int autoIncrementKey = generatedKeys.getInt(1);
+                    return autoIncrementKey;
+                }
+            }
             return len;
         } catch (SQLException e) {
             e.printStackTrace();
             throw new BaseDAOException("BaseDAO出错");
         } finally {
-            JDBCUtils.closeResource(null, ps);
+            JDBCUtils.closeResource(null, ps,generatedKeys);
         }
     }
 

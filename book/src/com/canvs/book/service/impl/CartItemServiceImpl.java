@@ -66,4 +66,9 @@ public class CartItemServiceImpl implements CartItemService {
     public void updateCartItem(CartItem cartItem) {
         cartItemDAO.updateCartItem(cartItem);
     }
+
+    @Override
+    public void deleteCartItem(CartItem cartItem) {
+        cartItemDAO.updateCartItem(cartItem);
+    }
 }

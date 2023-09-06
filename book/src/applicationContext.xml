@@ -10,18 +10,13 @@
         <!ATTLIST property ref IDREF #IMPLIED>
         ]>
 <beans>
-    <!--  controller  -->
-    <bean id="page" class="com.canvs.ssm.base.mvc.PageController"/>
-    <bean id="user" class="com.canvs.book.controller.UserController">
-       <property name="userService" ref="userService"/>
-        <property name="cartItemService" ref="cartItemService"/>
-    </bean>
-    <bean id="book" class="com.canvs.book.controller.BookController">
-        <property name="bookService" ref="bookService"/>
-    </bean>
-    <bean id="cart" class="com.canvs.book.controller.CartController">
-        <property name="cartItemService" ref="cartItemService"/>
-    </bean>
+
+    <!--  dao  -->
+    <bean id="userDAO" class="com.canvs.book.dao.impl.UserDAOImpl"/>
+    <bean id="bookDAO" class="com.canvs.book.dao.impl.BookDAOImpl"/>
+    <bean id="cartItemDAO" class="com.canvs.book.dao.impl.CartItemDAOImpl"/>
+    <bean id="orderDAO" class="com.canvs.book.dao.impl.OrderDAOImpl"/>
+    <bean id="orderItemDAO" class="com.canvs.book.dao.impl.OrderItemDAOImpl"/>
 
     <!--  service -->
     <bean id="bookService" class="com.canvs.book.service.impl.BookServiceImpl">
@@ -34,9 +29,25 @@
     <bean id="userService" class="com.canvs.book.service.impl.UserServiceImpl">
         <property name="userDAO" ref="userDAO"/>
     </bean>
+    <bean id="orderService" class="com.canvs.book.service.impl.OrderServiceImpl">
+        <property name="orderDAO" ref="orderDAO"/>
+        <property name="orderItemDAO" ref="orderItemDAO"/>
+        <property name="cartItemDAO" ref="cartItemDAO"/>
+    </bean>
 
-    <!--  dao  -->
-    <bean id="userDAO" class="com.canvs.book.dao.impl.UserDAOImpl"/>
-    <bean id="bookDAO" class="com.canvs.book.dao.impl.BookDAOImpl"/>
-    <bean id="cartItemDAO" class="com.canvs.book.dao.impl.CartItemDAOImpl"/>
+    <!--  controller  -->
+    <bean id="page" class="com.canvs.ssm.base.mvc.PageController"/>
+    <bean id="user" class="com.canvs.book.controller.UserController">
+        <property name="userService" ref="userService"/>
+        <property name="cartItemService" ref="cartItemService"/>
+    </bean>
+    <bean id="book" class="com.canvs.book.controller.BookController">
+        <property name="bookService" ref="bookService"/>
+    </bean>
+    <bean id="cart" class="com.canvs.book.controller.CartController">
+        <property name="cartItemService" ref="cartItemService"/>
+    </bean>
+    <bean id="order" class="com.canvs.book.controller.OrderController">
+        <property name="orderService" ref="orderService"/>
+    </bean>
 </beans>

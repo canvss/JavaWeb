@@ -24,6 +24,15 @@ public class CartController {
         User currUser = (User) session.getAttribute("currUser");
         CartItem cartItem = new CartItem(new Book(bookId),1,currUser);
         cartItemService.addOrUpdateCartItem(cartItem,currUser.getCart());
-        return "redirect:cart.do";
+        return "redirect:cart";
+    }
+
+    public String editCart(Integer cartItemId ,Integer buyCount){
+        cartItemService.updateCartItem(new CartItem(cartItemId,buyCount));
+        return "redirect:cart";
+    }
+
+    public String deleteCart(Integer cartItemId){
+        return null;
     }
 }

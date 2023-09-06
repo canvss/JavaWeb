@@ -21,7 +21,10 @@ public class CartItem {
         this.buyCount = buyCount;
         this.userBean = userBean;
     }
-
+    public CartItem(Integer id, Integer buyCount) {
+        this.id = id;
+        this.buyCount = buyCount;
+    }
     public CartItem() {
     }
 

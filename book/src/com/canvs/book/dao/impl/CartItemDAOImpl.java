@@ -25,4 +25,10 @@ public class CartItemDAOImpl extends BaseDAO<CartItem> implements CartItemDAO {
         String sql = "UPDATE t_cart_item SET buyCount=? WHERE id = ?";
         super.executeUpdate(sql,cartItem.getBuyCount(),cartItem.getId());
     }
+
+    @Override
+    public void deleteCartItem(CartItem cartItem) {
+        String sql = "DELETE FROM t_cart_item WHERE id = ?";
+        super.executeUpdate(sql,cartItem.getId());
+    }
 }

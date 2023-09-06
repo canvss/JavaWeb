@@ -6,7 +6,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 
-@WebFilter("*.do")
+@WebFilter("/*")
 public class OpenSessionInViewFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
