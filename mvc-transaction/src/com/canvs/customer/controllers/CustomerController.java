@@ -4,7 +4,7 @@ import com.canvs.customer.exception.CustomerServletException;
 import com.canvs.customer.exception.DateException;
 import com.canvs.customer.pojo.Customer;
 import com.canvs.customer.service.CustomerService;
-import com.canvs.ssm.base.mvc.ViewBaseServlet;
+import com.canvs.ssm.mvc.ViewBaseServlet;
 import com.canvs.ssm.utils.Utils;
 
 import javax.servlet.http.HttpServletRequest;

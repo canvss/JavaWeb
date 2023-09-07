@@ -4,6 +4,7 @@ import com.canvs.book.pojo.Cart;
 import com.canvs.book.pojo.User;
 import com.canvs.book.service.CartItemService;
 import com.canvs.book.service.UserService;
+import com.canvs.ssm.utils.Utils;
 
 import javax.servlet.http.HttpSession;
 
@@ -20,8 +21,12 @@ public class UserController {
         }
         return "index";
     }
-    public String regist(String uname,String pwd,String email){
-        User user = userService.regist(new User(uname, pwd, email));
-        return "user/login";
+    public String regist(String uname,String pwd,String email,String verify,HttpSession session){
+        Object kaptchaSessionKey = session.getAttribute("KAPTCHA_SESSION_KEY");
+        if (Utils.isNotEmpty(verify) && verify.equals(kaptchaSessionKey)){
+            User user = userService.regist(new User(uname, pwd, email,0));
+            return "user/login";
+        }
+        return "user/regist";
     }
 }

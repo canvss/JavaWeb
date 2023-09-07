@@ -3,7 +3,7 @@ package com.canvs.book.dao.impl;
 import com.canvs.book.dao.CartItemDAO;
 import com.canvs.book.pojo.CartItem;
 import com.canvs.book.pojo.User;
-import com.canvs.ssm.base.dao.BaseDAO;
+import com.canvs.ssm.basedao.BaseDAO;
 
 import java.util.List;
 

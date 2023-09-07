@@ -10,7 +10,7 @@
         <!ATTLIST property ref IDREF #IMPLIED>
         ]>
 <beans>
-    <bean id="page" class="com.canvs.ssm.base.mvc.PageController"/>
+    <bean id="page" class="com.canvs.ssm.mvc.PageController"/>
     <bean id="customerDAO" class="com.canvs.customer.dao.impl.CustomerDAOImpl"/>
     <bean id="customerService" class="com.canvs.customer.service.impl.CustomerServiceImpl">
         <!--  property标签用来表示属性，name表示属性名，ref表示引用其他bean的id值 -->

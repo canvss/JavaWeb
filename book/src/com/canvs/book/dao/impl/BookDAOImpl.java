@@ -2,7 +2,7 @@ package com.canvs.book.dao.impl;
 
 import com.canvs.book.dao.BookDAO;
 import com.canvs.book.pojo.Book;
-import com.canvs.ssm.base.dao.BaseDAO;
+import com.canvs.ssm.basedao.BaseDAO;
 
 import java.util.List;
 

@@ -2,7 +2,7 @@ package com.canvs.book.dao.impl;
 
 import com.canvs.book.dao.UserDAO;
 import com.canvs.book.pojo.User;
-import com.canvs.ssm.base.dao.BaseDAO;
+import com.canvs.ssm.basedao.BaseDAO;
 
 public class UserDAOImpl extends BaseDAO<User> implements UserDAO {
     @Override
@@ -13,8 +13,8 @@ public class UserDAOImpl extends BaseDAO<User> implements UserDAO {
 
     @Override
     public User addUser(User user) {
-        String sql = "INSERT INTO t_user(0,?,?,?,0)";
-        int id = super.executeUpdate(sql, user.getUname(), user.getPwd(), user.getEmail());
+        String sql = "INSERT INTO t_user VALUES(0,?,?,?,?)";
+        int id = super.executeUpdate(sql, user.getUname(), user.getPwd(), user.getEmail(),user.getRole());
         return new User(id);
     }
 }

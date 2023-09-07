@@ -1,4 +1,4 @@
-package com.canvs.ssm.base.mvc;
+package com.canvs.ssm.mvc;
 
 public class PageController {
     public String page(String page){

@@ -1,4 +1,4 @@
-package com.canvs.ssm.base.mvc;
+package com.canvs.ssm.mvc;
 
 import com.canvs.ssm.ioc.BeanFactory;
 import com.canvs.ssm.ioc.ClassPathXmlApplicationContext;

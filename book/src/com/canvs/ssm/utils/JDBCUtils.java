@@ -38,12 +38,12 @@ public class JDBCUtils {
         try {
             if (conn != null) conn.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            ExceptionUtils.SQLException(e,"JDBCUtils closeResource 关闭connection出错了");
         }
         try {
             if (ps != null) ps.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            ExceptionUtils.SQLException(e,"JDBCUtils closeResource 关闭Statement出错了");
         }
     }
 
@@ -51,17 +51,17 @@ public class JDBCUtils {
         try {
             if (conn != null) conn.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            ExceptionUtils.SQLException(e,"JDBCUtils closeResource 关闭connection出错了");
         }
         try {
             if (ps != null) ps.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            ExceptionUtils.SQLException(e,"JDBCUtils closeResource 关闭Statement出错了");
         }
         try {
             if (rs != null) rs.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            ExceptionUtils.SQLException(e,"JDBCUtils closeResource 关闭ResultSet出错了");
         }
     }
 }

@@ -3,7 +3,7 @@ package com.canvs.book.dao.impl;
 
 import com.canvs.book.dao.OrderItemDAO;
 import com.canvs.book.pojo.OrderItem;
-import com.canvs.ssm.base.dao.BaseDAO;
+import com.canvs.ssm.basedao.BaseDAO;
 
 public class OrderItemDAOImpl extends BaseDAO<OrderItem> implements OrderItemDAO {
     @Override

@@ -10,7 +10,6 @@
         <!ATTLIST property ref IDREF #IMPLIED>
         ]>
 <beans>
-
     <!--  dao  -->
     <bean id="userDAO" class="com.canvs.book.dao.impl.UserDAOImpl"/>
     <bean id="bookDAO" class="com.canvs.book.dao.impl.BookDAOImpl"/>
@@ -36,7 +35,7 @@
     </bean>
 
     <!--  controller  -->
-    <bean id="page" class="com.canvs.ssm.base.mvc.PageController"/>
+    <bean id="page" class="com.canvs.ssm.mvc.PageController"/>
     <bean id="user" class="com.canvs.book.controller.UserController">
         <property name="userService" ref="userService"/>
         <property name="cartItemService" ref="cartItemService"/>

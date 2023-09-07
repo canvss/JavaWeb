@@ -1,4 +1,4 @@
-package com.canvs.ssm.base.mvc;
+package com.canvs.ssm.mvc;
 
 import com.canvs.ssm.utils.Utils;
 import org.apache.jasper.tagplugins.jstl.core.ForEach;

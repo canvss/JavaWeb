@@ -18,4 +18,7 @@ public class Utils {
     public static boolean isNotEmpty(String str){
         return !isEmpty(str);
     }
+    public static boolean isStaticResource(String uri){
+        return uri.endsWith(".css") || uri.endsWith(".js") || uri.endsWith(".jpg") || uri.endsWith(".png") || uri.endsWith(".gif") || uri.endsWith(".bmp");
+    }
 }

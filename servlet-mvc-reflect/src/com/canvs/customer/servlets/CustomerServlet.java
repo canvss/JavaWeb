@@ -3,7 +3,7 @@ package com.canvs.customer.servlets;
 import com.canvs.customer.dao.impl.CustomerDAOImpl;
 import com.canvs.customer.exception.DateException;
 import com.canvs.customer.pojo.Customer;
-import com.canvs.ssm.base.mvc.ViewBaseServlet;
+import com.canvs.ssm.mvc.ViewBaseServlet;
 import com.canvs.ssm.utils.Utils;
 
 import javax.servlet.ServletException;

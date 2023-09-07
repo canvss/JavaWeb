@@ -1,4 +1,4 @@
-package com.canvs.ssm.base.mvc;
+package com.canvs.ssm.mvc;
 
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;

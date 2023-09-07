@@ -1,4 +1,4 @@
-package com.canvs.ssm.base.mvc;
+package com.canvs.ssm.mvc;
 
 import com.canvs.ssm.ioc.BeanFactory;
 import com.canvs.ssm.utils.Utils;
@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 
@@ -31,7 +32,7 @@ public class DispatcherServlet extends ViewBaseServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String requestURI = request.getRequestURI();
         // 检查请求是否是静态资源，例如以.css、.js、.jpg、.png等结尾
-        if (requestURI.endsWith(".css") || requestURI.endsWith(".js") || requestURI.endsWith(".jpg") || requestURI.endsWith(".png")) {
+        if (Utils.isStaticResource(requestURI)) {
             super.service(request, response); // 调用父类的service方法来处理静态资源
             return;
         }
@@ -81,12 +82,22 @@ public class DispatcherServlet extends ViewBaseServlet {
                     method.setAccessible(true);
                     Object returnObj = method.invoke(controllerBeanObj, parameterValues);
                     // 视图处理
-                    String methodReturnStr = (String) returnObj;
-                    if (methodReturnStr.startsWith("redirect:")) {
-                        String redirectStr = methodReturnStr.substring(("redirect:").length());
-                        response.sendRedirect(redirectStr);
-                    } else {
-                        this.processTemplate(methodReturnStr, request, response);
+                    if (returnObj == null){
+                        return;
+                    }else {
+                        String methodReturnStr = (String) returnObj;
+                        if (methodReturnStr.startsWith("redirect:")) {
+                            String redirectStr = methodReturnStr.substring(("redirect:").length());
+                            response.sendRedirect(redirectStr);
+                        } else if (methodReturnStr.startsWith("json:")){
+                            response.setContentType("application/json;charset=utf-8");
+                            String jsonStr = methodReturnStr.substring("json:".length());
+                            PrintWriter out = response.getWriter();
+                            out.print(jsonStr);
+                            out.flush();
+                        }else {
+                            this.processTemplate(methodReturnStr, request, response);
+                        }
                     }
                 }
             }
